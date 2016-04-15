@@ -1,0 +1,261 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Bitter:400,700);
+
+$blanco:		#eee8d6;
+$azuloscuro:	#101068;
+$amarillo:		#ffba00;
+$azul:			#0076a3;
+$verde: 		#548c27;
+$rojo:			#fe2d28;
+$morado: 		#6d73c2;
+$negro:			#000000;
+
+$color-fondo:	$azul;
+$color-principal:	$negro;
+$color-titulos:	$amarillo;
+$color-borde: $blanco;
+$color-header-noticia: lighten($amarillo,10);
+$color-texto-noticia: $blanco; 
+
+$fuente-titulos: 'Bitter', serif;
+$fuente-principal: 'Open sans', serif;
+$fondo-navegacion: darken($azul,10);
+$fondo-boton: $rojo;
+$texto-boton: $blanco;
+
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin tablet {
+	@media only screen and (min-width: #{$tablet}){
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media only screen and (min-width: #{$desktop}){
+		@content;
+	}
+}
+
+body {
+	background-color: $color-fondo;
+	margin:0;
+	padding:0;
+	font-size: 1.4rem;
+	color: $color-principal;
+	font-family: $fuente-principal;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: $color-titulos;
+	font-family: $fuente-titulos;
+}
+
+.container{
+	margin: 0 auto;
+	@include tablet{
+		width: 90%;
+	}
+
+	@include desktop{
+		width: 1000px;
+	}
+}
+
+@mixin clearfix{
+	&:after{
+		content:"";
+		display: table;
+		clear: both; 
+	}
+}
+
+.navegacion {
+	@include clearfix;
+	padding: 10px;
+	background-color: $fondo-navegacion;
+	h2 {
+		margin: 0;
+		float: left;
+		display: none;
+		@include tablet {
+			display: block;
+		}
+
+	}
+
+	nav {
+		display: inline;
+		margin-top: 10px;
+		@include tablet {
+			float:right;
+		}
+
+		a{
+			color: $blanco;
+			font-size: 1.3rem;
+			text-decoration: none;
+			text-align: center;
+			display: block; 
+			margin-bottom: 20px;
+
+			@include tablet{
+				display: inline;
+				text-align: left;
+			}
+
+			&:hover {
+				color: $amarillo;
+			}
+		}	
+	}
+
+}
+
+.background {
+	display: table;
+	width: 100%;
+	position: relative;
+
+	.contenido{
+		display: table-cell;
+		vertical-align: bottom;
+		padding: 0 20px 20px 20px;
+		position: relative;
+		font-size: 1.3rem;
+		p {
+			color: $blanco;
+			font-weight: 700;
+		}
+	}
+}
+
+
+@mixin imagenFondo($imagen, $height:100vh, $bgPos: center center){
+	background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6)), url($imagen) ;
+	background-repeat: no-repeat;
+	background-position: $bgPos;
+	background-size: cover;
+	height: $height;
+
+}
+
+.london {
+	@include imagenFondo('../img/imagen02.jpg', 600px, top center);
+}
+
+.estacion {
+	@include imagenFondo('../img/imagen03.jpg', 200px);
+}
+
+#contenido-principal {
+	box-sizing: border-box;
+	@include tablet {
+		padding-right: 40px;
+		width: 66.7%;
+		float: left;
+	}
+
+}
+
+aside {
+	@include tablet {
+		width: 33.3%;
+		float: right;
+	}
+
+}
+
+/*** NOTICIAS ***/
+.noticia {
+	padding-top: 10px;
+	margin-bottom: 30px;
+	border-top: 2px dotted $color-borde;
+
+	h3{
+		color: $color-header-noticia;
+		margin-bottom: 10px;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+	}
+
+	img {
+		float:left;
+		margin-right: 10px;
+	}
+
+	p {
+		font-size: 1rem;
+		color: $color-texto-noticia; 
+	}
+}
+
+.btn{
+	display: block;	
+	background-color: darken($fondo-boton, 10);
+	color: $texto-boton;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 5px 10px;
+	font-size: 1rem;
+	transition: all .3s ease;
+	
+	@include tablet {
+		display: inline-block;
+	}
+
+	&:hover{
+		background-color: darken($fondo-boton, 20);;
+
+	}
+
+}
+
+.btn-verde{
+	@extend .btn;
+	background-color: $verde;
+	
+}
+
+table {
+	width: 100%;
+	text-align: left;
+	font-size: 1rem;
+	border-collapse: collapse;
+	margin-top: 30px;
+	> caption {
+		text-align: left;
+		font-size: 1.8rem;
+		padding: 5px;
+		color: $amarillo;
+		font-family: $fuente-titulos;
+	}
+	thead tr th {
+		background-color:darken($azul,30);
+		color: $blanco;
+		font-size: 1.3rem;
+	}
+	> thead,
+	> tbody {
+		> tr {
+			color: $blanco;
+			background-color: darken($azul, 10);
+			&:nth-child(odd){
+				background-color: $azul;
+
+			}
+			&:hover {
+				background-color: darken($amarillo,5);
+			}
+			th, 
+			td {
+				padding: 10px;
+				border-bottom: 1px dotted $azuloscuro;
+			}
+
+		}
+	}
+
+	
+}

@@ -1,2 +1,2 @@
-# Curso-Gulp-Sass-Workflow
-Prácticas del curso Desarrollo Web Eficiente con SASS, NPM, Gulp y Web Workflows
+# Sass-Gulp
+Repositorio para el curso de SASS y GULP en UDEMY
